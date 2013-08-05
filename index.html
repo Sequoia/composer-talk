@@ -121,27 +121,35 @@ Curl/
 						<h2>Why Use a Dependency Manager?</h2>
 						<ul>
 							<li class="fragment">Easier installation of application/library</li>
-							<li class="fragment">Easier updating &amp; testing of 3rd party libraries</li>
 							<li class="fragment">Fewer version conflicts</li>
+							<li class="fragment">Find problems faster (esp. for platform dependencies)</li>
 							<li class="fragment">More consistency &amp; transparency</li>
-							<li class="fragment">Easier switching out of 3rd part libraries (with common interfaces)</li>
 						</ul>
 						<aside class="notes">
 							<ul>
-								<li></li>
-								<li></li>
-								<li></li>
+								<li>clone project &amp; run a single command</li>
+								<li>two projects that rely on same lib, diff. versions</li>
+								<!--<li>if project relies on sendmail for "contact me" box &amp; server doesn't have it, find out immediately, not after wondering why you're not getting emails for months</li>-->
+								<li>If you're installing a project that relies on bz2 to backup &amp; archive data and server doesn't have it, find out when you install instead of when you look for backups and realize you don't have any (yes, contrived example)</li>
+								<li>quickly get an overview of what a package depends on</li>
 							</ul>
 						</aside>
 					</section>
 					<section>
-						<h2></h2>
-						<aside class="notes">
+						<h2>Bad old days</h2>
 							<ul>
-								<li></li>
-								<li></li>
-								<li></li>
+								<li class="fragment">"Go get package X from location Y..."</li>
+								<li class="fragment">"Does this plugin even work with this version of the framework?"</li>
+								<li class="fragment">"No, it doesn't... where do I find the old one"</li>
+								<li class="fragment">"%&amp;*!, I didn't know this relied on PHP 5.4 :("</li>
+								<li class="fragment">rinse, repeat</li>
 							</ul>
+						<aside class="notes">
+							<!-- <ul>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul> -->
 						</aside>
 					</section>
 				</section>
