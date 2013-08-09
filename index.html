@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Dependency Management in PHP: Better Late than Never! | Sequoia McDowell</title>
 
 		<meta name="description" content="Dependency Management in PHP | 2013 Talk">
 		<meta name="author" content="Sequia McDowell">
@@ -16,8 +16,8 @@
 
 		<link rel="stylesheet" href="css/reveal.min.css">
 		<link rel="stylesheet" href="css/theme/night.css" id="theme">
-		<link rel="stylesheet" href="css/ansi2html.css" id="theme">
-		<link rel="stylesheet" href="css/sequoia.css" id="theme">
+		<link rel="stylesheet" href="css/ansi2html.css" >
+		<link rel="stylesheet" href="css/sequoia.css" >
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -43,21 +43,40 @@
 					<h1 style="line-height:1em;">Dependency Management in PHP</h1>
 					<h2 style="font-style:italic">Better Late than Never</h2>
 				</section>
+				<section>
+					<h1>Overview</h1>
+					<ul>
+						<li class="fragment">What it is dependency management &amp; how it can help you</li>
+						<li class="fragment">How to discover and use packages</li>
+						<li class="fragment">How to write (and publish!) your own packages</li>
+					</ul>
+					<aside class="notes">
+						<ul>
+							<li>Talking about dependency management in PHP: Important topic, dear to me, <b>move the community forward</b></li>
+							<li>time allowing: travis &amp; some more advanced aspects</li>
+						</ul>
+					</aside>
+				</section>
 
 				<section>
 					<h1>About Me</h1>
 					<ul>
 						<li>Sequoia McDowell</li>
-						<li>Software Engineer at PTC</li>
-						<li>@_sequoia</li>
+						<li>Software Engineer at <a href="http://www.ptc.com/training/">PTC</a> </li>
+						<li><a href="http://twitter.com/_sequoia">@_sequoia</a> </li>
 						<li>sequoia.mcdowell@gmail.com</li>
 					</ul>
+					<aside class="notes">
+						<ul>
+							<li>Feel free to come say "Hi" and/or ask questions</li>
+						</ul>
+					</aside>
 				</section>
 
 				<section>
 				
 					<section>
-						<h2>Package Management</h2>
+						<h1>Package Management</h1>
 						<ul>
 							<li class="fragment">What is a package manager?
 								<div class="fragment"> 
@@ -71,10 +90,12 @@
 						</ul>
 						<aside class="notes">
 						<ul>
-							<li>Helps you install software</li>
+							<li><b>What is a package manager?</b></li>
+							<li>Basically: Tool that helps you install software</li>
 							<li>ex: apt-get for linux, homebrew for mac, npm &amp; rubygems, chocolatey</li>
+							<li><b>What is a package</b></li>
 							<li>different kinds of package specifications (.rpm, .deb etc.), for scripted langs usually a directory w/stuff &amp; a definition file</li>
-							<li>for our purposes, according to composer site: (LAST NOTE)</li>
+							<li>for our purposes, according to composer site: (LAST POINT)</li>
 						</ul>
 						</aside>
 					</section>
@@ -118,7 +139,7 @@ Curl/
 
 				<section>
 					<section>
-						<h2>Why Use a Dependency Manager?</h2>
+						<h1>Why Use a Dependency Manager?</h1>
 						<ul>
 							<li class="fragment">Easier installation of application/library</li>
 							<li class="fragment">Fewer version conflicts</li>
@@ -138,23 +159,120 @@ Curl/
 					<section>
 						<h2>Bad old days</h2>
 							<ul>
-								<li class="fragment">"Go get package X from location Y..."</li>
+								<li class="fragment">"Go get library X from location Y..."</li>
 								<li class="fragment">"Does this plugin even work with this version of the framework?"</li>
 								<li class="fragment">"No, it doesn't... where do I find the old one"</li>
 								<li class="fragment">"%&amp;*!, I didn't know this relied on PHP 5.4 :("</li>
 								<li class="fragment">rinse, repeat</li>
+								<li class="fragment">Authoring a new lib/framework: roll your own sanity checker</li>
 							</ul>
 						<aside class="notes">
-							<!-- <ul>
-								<li></li>
-								<li></li>
-								<li></li>
-							</ul> -->
+							<ul>
+								<li>many frameworks made their own build tools</li>
+								<li>many frameworks did their own dependency checking</li>
+							</ul>
 						</aside>
 					</section>
 				</section>
-			</div>
 
+				<section>
+					<section>
+						<h1>Installing Composer</h1>
+						<ul>
+							<li>Requires PHP 5.3.2 (Released Dec 20, 2012)</li>
+							<li>Install via curl (*nix):<br>
+	<pre class="ansi2html">
+$ curl -sS https://getcomposer.org/installer | php</pre>
+							</li>
+							<li>Move into your <code>$PATH</code> for easier access
+	<pre class="ansi2html">
+$ mv composer.phar /usr/local/bin/composer
+# now reachable via `composer [command]
+# rather than `php composer.phar [command]</pre>
+							</li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>Need late-version PHP</li>
+								<li>putting in path is optional, allows you to call composer rather than php composer.phar</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Other Installation Methods</h2>
+						<ul>
+							<li>Without curl:
+	<pre class="ansi2html">
+$ php -r \
+"eval('?>'.file_get_contents('https://getcomposer.org/installer'));"
+	</pre>
+							</li>
+							<li>Windows: <a href="https://getcomposer.org/Composer-Setup.exe">Composer-Setup.exe</a> </li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>Not gonna go into these</li>
+							</ul>
+						</aside>
+					</section>
+					<section style="margin-top:-140px!important;">
+<pre class="ansi2html">
+<span class="f5">[499]</span>$ composer
+   ______
+  / ____/___  ____ ___  ____  ____  ________  _____
+ / /   / __ \/ __ `__ \/ __ \/ __ \/ ___/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ (__  )  __/ /
+\____/\____/_/ /_/ /_/ .___/\____/____/\___/_/
+                    /_/
+<span class="f2">Composer</span> version <span class="f3">6a1262e675b5c1c2c7b1cc58a14028f67885b880</span>
+
+<span class="f3">Usage:</span>
+  [options] command [arguments]
+
+<span class="f3">Options:</span>
+  <span class="f2">--help</span>           <span class="f2">-h</span> Display this help message.
+  <span class="f2">--quiet</span>          <span class="f2">-q</span> Do not output any message.
+  <span class="f2">--verbose</span>        <span class="f2">-v|vv|vvv</span> Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+  <span class="f2">--version</span>        <span class="f2">-V</span> Display this application version.
+  <span class="f2">--ansi</span>              Force ANSI output.
+  <span class="f2">--no-ansi</span>           Disable ANSI output.
+  <span class="f2">--no-interaction</span> <span class="f2">-n</span> Do not ask any interactive question.
+  <span class="f2">--profile</span>           Display timing and memory usage information
+  <span class="f2">--working-dir</span>    <span class="f2">-d</span> If specified, use the given directory as working directory.
+
+<span class="f3">Available commands:</span>
+  <span class="f2">about           </span> Short information about Composer
+  <span class="f2">archive         </span> Create an archive of this composer package
+  <span class="f2">config          </span> Set config options
+  <span class="f2">create-project  </span> Create new project from a package into given directory.
+  <span class="f2">depends         </span> Shows which packages depend on the given package
+  <span class="f2">diagnose        </span> Diagnoses the system to identify common errors.
+  <span class="f2">dump-autoload   </span> Dumps the autoloader
+  <span class="f2">dumpautoload    </span> Dumps the autoloader
+  <span class="f2">help            </span> Displays help for a command
+  <span class="f2">init            </span> Creates a basic composer.json file in current directory.
+  <span class="f2">install         </span> Installs the project dependencies from the composer.lock file if present, or falls back on the composer.json.
+  <span class="f2">list            </span> Lists commands
+  <span class="f2">require         </span> Adds required packages to your composer.json and installs them
+  <span class="f2">run-script      </span> Run the scripts defined in composer.json.
+  <span class="f2">search          </span> Search for packages
+  <span class="f2">self-update     </span> Updates composer.phar to the latest version.
+  <span class="f2">selfupdate      </span> Updates composer.phar to the latest version.
+  <span class="f2">show            </span> Show information about packages
+  <span class="f2">status          </span> Show a list of locally modified packages
+  <span class="f2">update          </span> Updates your dependencies to the latest version according to composer.json, and updates the composer.lock file.
+  <span class="f2">validate        </span> Validates a composer.json
+</pre>
+					<aside class="notes">
+						<ul>
+							<li>Wonderful help screen, beautiful, ansi output</li>
+							<li>(you can set --no-ansi)</li>
+							<li>We'll look more closely at some of these commands later</li>
+						</ul>
+					</aside>
+					</section>
+				</section>
+			</div> <!-- .slides -->
 		</div>
 
 		<script src="lib/js/head.min.js"></script>

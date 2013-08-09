@@ -263,7 +263,13 @@
 .ef254 { color: #e4e4e4; } .eb254 { background-color: #e4e4e4; }
 .ef255 { color: #eeeeee; } .eb255 { background-color: #eeeeee; }
 
-.reveal .ansi2html { color: #AAAAAA; background-color: #000000; padding:10px;}
+.reveal .ansi2html {
+	color: #AAAAAA;
+	background-color: #000000;
+	padding:10px;
+	margin: .5em 0;
+	width:100%;
+}
 .ansi2html > .bold, .ansi2html > pre > .bold {
   /* Bold is heavy black on white, or bright white
      depending on the default background */
