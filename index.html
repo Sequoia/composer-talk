@@ -39,7 +39,7 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 
-				<section>
+				<section> <!-- titlecard -->
 					<h1 style="line-height:1em;">Dependency Management in PHP</h1>
 					<h2 style="font-style:italic">Better Late than Never</h2>
 				</section>
@@ -58,7 +58,7 @@
 					</aside>
 				</section>
 
-				<section>
+				<section> <!-- about me -->
 					<h1>About Me</h1>
 					<ul>
 						<li>Sequoia McDowell</li>
@@ -73,8 +73,7 @@
 					</aside>
 				</section>
 
-				<section>
-				
+				<section> <!-- what -->
 					<section>
 						<h1>Package Management</h1>
 						<ul>
@@ -136,8 +135,7 @@ Curl/
 
 				</section>
 
-
-				<section>
+				<section><!-- why -->
 					<section>
 						<h1>Why Use a Dependency Manager?</h1>
 						<ul>
@@ -175,7 +173,7 @@ Curl/
 					</section>
 				</section>
 
-				<section>
+				<section> <!-- installing composer -->
 					<section>
 						<h1>Installing Composer</h1>
 						<ul>
@@ -215,7 +213,7 @@ $ php -r \
 							</ul>
 						</aside>
 					</section>
-					<section style="margin-top:-140px!important;">
+					<section style="margin-top:-16%!important;">
 <pre class="ansi2html">
 <span class="f5">[499]</span>$ composer
    ______
@@ -271,7 +269,185 @@ $ php -r \
 						</ul>
 					</aside>
 					</section>
-				</section>
+				</section><!-- installing -->
+
+				<section> <!-- getting oriented -->
+					<h1>Getting Oriented</h1>
+					<h2 style="font-style:italic">a few helpful commands</h2>
+					<ul>
+						<li class="fragment"><code>diagnose</code>: system sanity check
+<pre class="ansi2html">
+<span class="f5">[499]</span>$ composer diagnose
+Checking platform settings: <span class="f2">OK</span>
+Checking http connectivity: <span class="f2">OK</span>
+Checking composer.json: <span class="f7 b1">FAIL</span>
+<span class="f0 b3">No license specified, it is recommended to do so. For closed-source software you
+may use &quot;proprietary&quot; as license.</span>
+Checking disk free space: <span class="f2">OK</span>
+Checking composer version: <span class="f2">OK</span>
+</pre>
+						</li>
+						<li class="fragment"><code>-V</code>: version
+<pre class="ansi2html">
+<span class="f5">[500]</span>$ composer -V
+<span class="f2">Composer</span> version <span class="f3">6a1262e675b5c1c2c7b1cc58a14028f67885b880</span></pre>
+						</li>
+						<li class="fragment"><code>help [command name]</code>: help output for commands</li>
+						<li class="fragment"><code>-v|vv|vvv</code>: increase verbosity</li>
+					</ul>
+					<aside class="notes">
+						<ul>
+							<li>These commands help you find your way around composer &amp; packages, &amp; fix problems when they come up</li>
+							<li>diagnose checks for common issues and makes sure you have the stuff composer needs in place. (check this before asking for help)<br>
+						also validates composer.json if one is present</li>
+						</ul>
+					</aside>
+				</section><!-- oriented -->
+
+				<section><!-- installing a package -->
+					<section> <!-- installing a package -->
+						<h1>Installing a Package Using Composer</h1>
+						<ol>
+							<li>Clone &amp; install</li>
+							<li><code>create-package</code></li>
+							<li>Start from Scratch</li>
+						</ol>
+
+						<aside class="notes">
+							<ul>
+								<li><b>3 main ways to do this</b></li>
+								<li>1. Clone &amp; install<br>
+								for when you want to work directly on the project (like if you wanted to fix a bug in a Symfony package)</li>
+								<li>2. use create-package<br>
+								Starting your own project on laravel or ZF2</li>
+								<li>3. write your own composer.json start from scratch<br>
+								creating your own project with your own list of dependencies</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section><!-- composer install -->
+						<h4><code>git clone &amp;&amp; composer install</code>: Install from source</h4>
+						<p>Use this method when you want to <b>use or	modify a library/framework</b> </p>
+							<pre class="ansi2html"><span class="fragment"><span class="f5">[499]</span>$ git clone https://github.com/Seldaek/monolog.git
+Cloning into 'monolog'...
+remote: Counting objects: 3810, done.
+remote: Compressing objects: 100% (2109/2109), done.
+remote: Total 3810 (delta 1560), reused 3519 (delta 1313)
+Receiving objects: 100% (3810/3810), 744.90 KiB | 759 KiB/s, done.
+Resolving deltas: 100% (1560/1560), done.
+<span class="f5">[500]</span>$ cd monolog/ </span><span class="fragment">
+<span class="f5">[501]</span>$ composer install
+<span class="f2">Loading composer repositories with package information</span>
+<span class="f2">Installing dependencies (including require-dev)</span>
+  - Installing <span class="f2">psr/log</span> (<span class="f3">1.0.0</span>)
+    Downloading: <span class="f3">100%</span>
+
+  - Installing <span class="f2">mlehner/gelf-php</span> (<span class="f3">v1.0</span>)
+    Downloading: <span class="f3">100%</span>
+
+  - Installing <span class="f2">raven/raven</span> (<span class="f3">0.5.1</span>)
+    Downloading: <span class="f3">100%</span>
+
+  - Installing <span class="f2">doctrine/common</span> (<span class="f3">2.3.0</span>)
+    Downloading: <span class="f3">100%</span>
+
+  - Installing <span class="f2">doctrine/couchdb</span> (<span class="f3">dev-master 44f0b79</span>)
+    Cloning 44f0b7926926aa77431591c6debf3004ce13ddfa
+
+<span class="f2">Writing lock file</span>
+<span class="f2">Generating autoload files</span></span></pre>
+						<aside class="notes">
+							<ul>
+								<li><b>Installing from source</b></li>
+								<li>use to work directly on a library, patch etc.</li>
+								<li><b>FOR EXAMPLE </b> contribute to monolog</li>
+								<li>Clone the project</li>
+								<li>composer install</li>
+								<li><b>root project</b></li>
+								<li>now you can modify package, run tests (this package doesn't include test suite but it could), etc.</li>
+							</ul>
+						</aside>
+					</section><!--install from source-->
+
+					<section> <!--create-project-->
+						<h4><code>composer create-project</code>: Install from Packagist</h4>
+						<p>Use this method when you want to <b>use a framework's skeleton package</b> to start your project. ex: <code>laravel/laravel, zendframework/ZendSkeletonApplication</code></p>
+<pre class="ansi2html"><span class="fragment"><span class="f5">[500]</span>$ composer create-project laravel/laravel
+<span class="f2">Installing laravel/laravel (v4.0.6)</span>
+  - Installing <span class="f2">laravel/laravel</span> (<span class="f3">v4.0.6</span>)
+    Downloading: <span class="f3">100%</span>
+
+<span class="f2">Created project in /tmp/laravel</span>
+<span class="f2">Loading composer repositories with package information</span>
+<span class="f2">Installing dependencies (including require-dev)</span>
+  - Installing <span class="f2">filp/whoops</span> (<span class="f3">1.0.7</span>)
+    Downloading: <span class="f3">100%</span>
+
+  - Installing <span class="f2">doctrine/lexer</span> (<span class="f3">dev-master bc0e1f0</span>)
+    Loading from cache	
+...
+  - Installing <span class="f2">laravel/framework</span> (<span class="f3">4.0.x-dev e943b3d</span>)
+    Cloning e943b3da84ab556f0176eea73387cd14fa07933e
+
+symfony/translation suggests installing symfony/config ()
+symfony/translation suggests installing symfony/yaml ()
+...
+monolog/monolog suggests installing ext-amqp (Allow sending log messages to an AMQP server (1.0+ required))
+monolog/monolog suggests installing ext-mongo (Allow sending log messages to a Mongoserver)
+<span class="f2">Writing lock file</span>
+<span class="f2">Generating autoload files</span>
+Generating optimized class loader
+Application key [3keZh90lTVfdiyQ1aw5zwUvwY7w5OXBt] set successfully.</span></pre>
+						<aside class="notes">
+							<ul>
+								<li><b>using create-project</b></li>
+								<li>For building a new website and starting out with a template or "skeleton" package<br>
+								in the past: download all of cake or w/e and put your application in it. <b>MONOLITHIC, one piece</b></li>
+								<li>EXAMPLE</li>
+								<li>Laravel uses lots of other packages from other projects like Symfony &amp; doctrine <b>This is why it's not packaged as zip file</b>: it would have to duplicate all the other packages into its source</li>
+								<li><b>Skeleton package is a sort of "jump-start" for a framework: laravel/laravel, zendframework/ZendSkeletonApplication</b></li>
+								<li>skeleton project laravel/laravel declares laravel/framework as a dependency</li>
+								<li>note Donwloading/Cloning/Loading from Cache</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section> <!-- write composer.json -->
+						<h4>Define dependencies &amp; install</h4>
+						<p>Starting from scratch</p>
+<pre class="ansi2html"><span class="fragment"><span class="f5">[501]</span>$ cat composer.json
+{
+	&quot;require&quot;: {
+		&quot;slim/slim&quot;:&quot;*&quot;
+	}
+}
+</span>
+<span class="fragment"><span class="f5">[502]</span>$ composer install
+<span class="f2">Loading composer repositories with package information</span>
+<span class="f2">Installing dependencies (including require-dev)</span>
+  - Installing <span class="f2">slim/slim</span> (<span class="f3">2.3.1</span>)
+    Loading from cache
+
+<span class="f2">Writing lock file</span>
+<span class="f2">Generating autoload files</span></span>
+
+<span class="fragment"><span class="f5">[503]</span>$ ls -l vendor
+total 12
+-rw-rw-r-- 1 diamonds diamonds  182 Aug  9 22:50 autoload.php
+drwxrwxr-x 2 diamonds diamonds 4096 Aug  9 22:50 composer
+drwxrwxr-x 3 diamonds diamonds 4096 Aug  9 22:50 slim</span></pre>
+						<aside class="notes">
+						<ul>
+							<li>write your own composer.json This is for packages that don't have a skeleton package, or if you don't want to use one</li>
+							<li>I just need "slim" for my project right now, latest version</li>
+							<li>add slim, install</li>
+							<li>this is how you start your own roll-your-own project</li>
+							<li>Code is now in vendor directory</li>
+						</ul>
+						</aside>
+					</section>
+				</section> <!-- installing a package -->
 			</div> <!-- .slides -->
 		</div>
 
