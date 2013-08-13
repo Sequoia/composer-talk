@@ -20,7 +20,7 @@
 		<link rel="stylesheet" href="css/sequoia.css" >
 
 		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="lib/css/tomorrow-night-bright.css">
 
 		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
 		<script>
@@ -129,7 +129,8 @@ Curl/
 						<li>Dependency Manager: installs packages locally, relative to a project, for the project</li>
 					</ul>
 					<aside class="notes">
-					from composer: By default it will never install anything globally. Thus, it is a dependency manager.
+					from composer: By default it will never install anything globally. Thus, it is a dependency manager.<br><br>
+					There is no "composer install [packagename]" --- "Too many arguments" exception
 					</aside>
 					</section>
 
@@ -160,7 +161,7 @@ Curl/
 								<li class="fragment">"Go get library X from location Y..."</li>
 								<li class="fragment">"Does this plugin even work with this version of the framework?"</li>
 								<li class="fragment">"No, it doesn't... where do I find the old one"</li>
-								<li class="fragment">"%&amp;*!, I didn't know this relied on PHP 5.4 :("</li>
+								<li class="fragment">"I didn't know this relied on PHP 5.4! :("</li>
 								<li class="fragment">rinse, repeat</li>
 								<li class="fragment">Authoring a new lib/framework: roll your own sanity checker</li>
 							</ul>
@@ -306,73 +307,65 @@ Checking composer version: <span class="f2">OK</span>
 
 				<section><!-- installing a package -->
 					<section> <!-- installing a package -->
-						<h1>Installing a Package Using Composer</h1>
-						<ol>
-							<li>Clone &amp; install</li>
-							<li><code>create-package</code></li>
-							<li>Start from Scratch</li>
+						<h1>Installing Using Composer</h1>
+						<ol class="fragment">
+							<li>Start a new project</li>
+							<li>Start a new project based on a framework</li>
+							<li>Work on an existing library or project</li>
 						</ol>
 
 						<aside class="notes">
+						<p>clone &amp; install, create package &amp; install, use create-prjoject... when do I use what?</p>
 							<ul>
-								<li><b>3 main ways to do this</b></li>
-								<li>1. Clone &amp; install<br>
-								for when you want to work directly on the project (like if you wanted to fix a bug in a Symfony package)</li>
-								<li>2. use create-package<br>
-								Starting your own project on laravel or ZF2</li>
-								<li>3. write your own composer.json start from scratch<br>
+								<li><b>Depends on what you want to do</b></li>
+								<li>1. write your own composer.json start from scratch<br>
 								creating your own project with your own list of dependencies</li>
+								<li>2. start based on a framework<br>
+								Starting your own project on laravel or ZF2</li>
+								<li>3. Clone &amp; install<br>
+								for when you want to work directly on a lib, or work on a project you're tracking</li>
 							</ul>
 						</aside>
 					</section>
 
-					<section><!-- composer install -->
-						<h4><code>git clone &amp;&amp; composer install</code>: Install from source</h4>
-						<p>Use this method when you want to <b>use or	modify a library/framework</b> </p>
-							<pre class="ansi2html"><span class="fragment"><span class="f5">[499]</span>$ git clone https://github.com/Seldaek/monolog.git
-Cloning into 'monolog'...
-remote: Counting objects: 3810, done.
-remote: Compressing objects: 100% (2109/2109), done.
-remote: Total 3810 (delta 1560), reused 3519 (delta 1313)
-Receiving objects: 100% (3810/3810), 744.90 KiB | 759 KiB/s, done.
-Resolving deltas: 100% (1560/1560), done.
-<span class="f5">[500]</span>$ cd monolog/ </span><span class="fragment">
-<span class="f5">[501]</span>$ composer install
+					<section> <!-- write composer.json -->
+						<h4>Start a New Project</h4>
+						<p>Create new <code>package.json</code></p>
+<pre class="ansi2html"><span class="fragment"><span class="f5">[501]</span>$ cat composer.json
+{
+	&quot;require&quot;: {
+		&quot;slim/slim&quot;:&quot;*&quot;
+	}
+}
+</span>
+<span class="fragment"><span class="f5">[502]</span>$ composer install
 <span class="f2">Loading composer repositories with package information</span>
 <span class="f2">Installing dependencies (including require-dev)</span>
-  - Installing <span class="f2">psr/log</span> (<span class="f3">1.0.0</span>)
-    Downloading: <span class="f3">100%</span>
-
-  - Installing <span class="f2">mlehner/gelf-php</span> (<span class="f3">v1.0</span>)
-    Downloading: <span class="f3">100%</span>
-
-  - Installing <span class="f2">raven/raven</span> (<span class="f3">0.5.1</span>)
-    Downloading: <span class="f3">100%</span>
-
-  - Installing <span class="f2">doctrine/common</span> (<span class="f3">2.3.0</span>)
-    Downloading: <span class="f3">100%</span>
-
-  - Installing <span class="f2">doctrine/couchdb</span> (<span class="f3">dev-master 44f0b79</span>)
-    Cloning 44f0b7926926aa77431591c6debf3004ce13ddfa
+  - Installing <span class="f2">slim/slim</span> (<span class="f3">2.3.1</span>)
+    Loading from cache
 
 <span class="f2">Writing lock file</span>
-<span class="f2">Generating autoload files</span></span></pre>
+<span class="f2">Generating autoload files</span></span>
+
+<span class="fragment"><span class="f5">[503]</span>$ ls -l vendor
+total 12
+-rw-rw-r-- 1 diamonds diamonds  182 Aug  9 22:50 autoload.php
+drwxrwxr-x 2 diamonds diamonds 4096 Aug  9 22:50 composer
+drwxrwxr-x 3 diamonds diamonds 4096 Aug  9 22:50 slim</span></pre>
 						<aside class="notes">
-							<ul>
-								<li><b>Installing from source</b></li>
-								<li>use to work directly on a library, patch etc.</li>
-								<li><b>FOR EXAMPLE </b> contribute to monolog</li>
-								<li>Clone the project</li>
-								<li>composer install</li>
-								<li><b>root project</b></li>
-								<li>now you can modify package, run tests (this package doesn't include test suite but it could), etc.</li>
-							</ul>
+						<ul>
+							<li>write your own composer.json This is for packages that don't have a skeleton package, or if you don't want to use one</li>
+							<li>I just need "slim" for my project right now, latest version</li>
+							<li>add slim, install</li>
+							<li>this is how you start your own roll-your-own project</li>
+							<li>Code is now in vendor directory</li>
+						</ul>
 						</aside>
-					</section><!--install from source-->
+					</section>
 
 					<section> <!--create-project-->
-						<h4><code>composer create-project</code>: Install from Packagist</h4>
-						<p>Use this method when you want to <b>use a framework's skeleton package</b> to start your project. ex: <code>laravel/laravel, zendframework/ZendSkeletonApplication</code></p>
+						<h4>Create a site/project based on a framework</h4>
+						<p><code>create-project</code></p>
 <pre class="ansi2html"><span class="fragment"><span class="f5">[500]</span>$ composer create-project laravel/laravel
 <span class="f2">Installing laravel/laravel (v4.0.6)</span>
   - Installing <span class="f2">laravel/laravel</span> (<span class="f3">v4.0.6</span>)
@@ -413,41 +406,196 @@ Application key [3keZh90lTVfdiyQ1aw5zwUvwY7w5OXBt] set successfully.</span></pre
 						</aside>
 					</section>
 
-					<section> <!-- write composer.json -->
-						<h4>Define dependencies &amp; install</h4>
-						<p>Starting from scratch</p>
-<pre class="ansi2html"><span class="fragment"><span class="f5">[501]</span>$ cat composer.json
-{
-	&quot;require&quot;: {
-		&quot;slim/slim&quot;:&quot;*&quot;
-	}
-}
-</span>
-<span class="fragment"><span class="f5">[502]</span>$ composer install
+					<section><!-- clone & install -->
+						<h4>Work on an existing project or Library</h4>
+						<code>git clone &amp;&amp; composer install</code>
+							<pre class="ansi2html"><span class="fragment"><span class="f5">[499]</span>$ git clone https://github.com/Seldaek/monolog.git
+Cloning into 'monolog'...
+remote: Counting objects: 3810, done.
+remote: Compressing objects: 100% (2109/2109), done.
+remote: Total 3810 (delta 1560), reused 3519 (delta 1313)
+Receiving objects: 100% (3810/3810), 744.90 KiB | 759 KiB/s, done.
+Resolving deltas: 100% (1560/1560), done.
+<span class="f5">[500]</span>$ cd monolog/ </span><span class="fragment">
+<span class="f5">[501]</span>$ composer install
 <span class="f2">Loading composer repositories with package information</span>
 <span class="f2">Installing dependencies (including require-dev)</span>
-  - Installing <span class="f2">slim/slim</span> (<span class="f3">2.3.1</span>)
-    Loading from cache
+  - Installing <span class="f2">psr/log</span> (<span class="f3">1.0.0</span>)
+    Downloading: <span class="f3">100%</span>
+
+  - Installing <span class="f2">mlehner/gelf-php</span> (<span class="f3">v1.0</span>)
+    Downloading: <span class="f3">100%</span>
+
+  - Installing <span class="f2">raven/raven</span> (<span class="f3">0.5.1</span>)
+    Downloading: <span class="f3">100%</span>
+
+  - Installing <span class="f2">doctrine/common</span> (<span class="f3">2.3.0</span>)
+    Downloading: <span class="f3">100%</span>
+
+  - Installing <span class="f2">doctrine/couchdb</span> (<span class="f3">dev-master 44f0b79</span>)
+    Cloning 44f0b7926926aa77431591c6debf3004ce13ddfa
 
 <span class="f2">Writing lock file</span>
-<span class="f2">Generating autoload files</span></span>
-
-<span class="fragment"><span class="f5">[503]</span>$ ls -l vendor
-total 12
--rw-rw-r-- 1 diamonds diamonds  182 Aug  9 22:50 autoload.php
-drwxrwxr-x 2 diamonds diamonds 4096 Aug  9 22:50 composer
-drwxrwxr-x 3 diamonds diamonds 4096 Aug  9 22:50 slim</span></pre>
+<span class="f2">Generating autoload files</span></span></pre>
 						<aside class="notes">
-						<ul>
-							<li>write your own composer.json This is for packages that don't have a skeleton package, or if you don't want to use one</li>
-							<li>I just need "slim" for my project right now, latest version</li>
-							<li>add slim, install</li>
-							<li>this is how you start your own roll-your-own project</li>
-							<li>Code is now in vendor directory</li>
-						</ul>
+							<ul>
+								<li><b>Installing from source</b></li>
+								<li>use to work directly on a library or existing personal project</li>
+								<li><b>FOR EXAMPLE </b> creating a local dev install of a project you work on in the office</li>
+								<li><b>FOR EXAMPLE </b> contribute to monolog</li>
+								<li>Clone the project</li>
+								<li>composer install</li>
+								<li><b>root project</b></li>
+								<li>now you can modify package, run tests (this package doesn't include test suite but it could), etc.</li>
+							</ul>
+							<b>Next:</b> Going to look at that package.json but first lets look at a tool that makes it a lot easier to create
+						</aside>
+					</section><!--install from source-->
+				</section> <!-- installing a package -->
+
+				<section> <!-- composer init -->
+					<section><!-- composer init 1 -->
+						<h1>Interactive Project Setup</h1>
+						<h2><code>composer init</code></h2>
+						
+<pre class="ansi2html">
+
+<span class="fragment"><span class="f5">[501]</span>$ composer init
+
+<span class="f7 b4">                                            </span>
+<span class="f7 b4">  Welcome to the Composer config generator  </span>
+<span class="f7 b4">                                            </span>
+
+This command will guide you through creating your composer.json config.</span>
+
+<span class="fragment"><span class="f2">Package name (</span><span class="f2">&lt;vendor&gt;/</span><span class="f2">&lt;name&gt;)</span> [<span class="f3">diamonds/foo</span>]: sequoia/clientSite
+<span class="f2">Description</span> []: site for client X
+<span class="f2">Author</span> [<span class="f3">Sequoia McDowell </span>&lt;sequoia.mcdowell@gmail.com&gt;]: </span>
+<span class="fragment"><span class="f2">Minimum Stability</span> []: stable</span> 
+<span class="fragment"><span class="f2">License</span> []: proprietary</span>
+
+<span class="fragment">Define your dependencies.
+
+<span class="f2">Would you like to define your dependencies (require) interactively</span> [<span class="f3">yes</span>]?</span>
+<span class="fragment"><span class="f2">Search for a package</span> []: slim</span>
+
+</pre>
+						<aside class="notes">
+							<ul>
+								<li><b>I'm gonna step thru how you might start a new project with composer</b></li>
+								<li>init Walks you thru the steps</li>
+								<li>like npm init</li>
+								<li>not everything intuitive, rough around the edges</li>
+							</ul>
 						</aside>
 					</section>
-				</section> <!-- installing a package -->
+
+					<section style="margin-top:-9%"><!-- composer init 2 -->
+<pre class="ansi2html">
+<span class="f2">Search for a package</span> []: slim
+
+<span class="fragment">Found <span class="f2">15</span> packages matching <span class="f2">slim</span>
+
+ <span class="f2">  [0]</span> slim/slim
+ <span class="f2">  [1]</span> slim/slim-skeleton
+ <span class="f2">  [2]</span> slim/extras
+ <span class="f2">  [3]</span> slim/views
+ <span class="f2">  [4]</span> slim/strong
+ <span class="f2">  [5]</span> slim/shady
+ <span class="f2">  [6]</span> flynsarmy/slim-monolog
+ <span class="f2">  [7]</span> zeuxisoo/slim-whoops
+ <span class="f2">  [8]</span> entomb/slim-json-api
+ <span class="f2">  [9]</span> hellogerard/less-slim-middleware
+ <span class="f2"> [10]</span> petebrowne/slim-layout-view
+ <span class="f2"> [11]</span> rtablada/slim-post
+ <span class="f2"> [12]</span> slimcontroller/slimcontroller
+ <span class="f2"> [13]</span> mikehaertl/phpwkhtmltopdf
+ <span class="f2"> [14]</span> voodoophp/voodoo
+
+<span class="f2">Enter package # to add, or the complete package name if it is not listed</span> []: 0</span>
+<span class="fragment"><span class="f2">Enter the version constraint to require</span> []: 2</span>
+<span class="fragment"><span class="f2">Search for a package</span> []:
+<span class="f2">Would you like to define your dev dependencies (require-dev) interactively</span> [<span class="f3">yes</span>]? no</span>
+
+<span class="fragment">
+{
+    &quot;name&quot;: &quot;sequoia/clientSite&quot;,
+    &quot;description&quot;: &quot;site for client X&quot;,
+    &quot;require&quot;: {
+        &quot;slim/slim&quot;: &quot;2&quot;
+    },
+    &quot;license&quot;: &quot;proprietary&quot;,
+    &quot;authors&quot;: [
+        {
+            &quot;name&quot;: &quot;Sequoia McDowell&quot;,
+            &quot;email&quot;: &quot;sequoia.mcdowell@gmail.com&quot;
+        }
+    ],
+    &quot;minimum-stability&quot;: &quot;stable&quot;
+}
+
+<span class="f2">Do you confirm generation</span> [<span class="f3">yes</span>]?</span>
+</pre>
+						<aside class="notes">
+							<ul>
+								<li>Walks you thru project creation, autogenerates your package.json</li>
+								<li>not clear that you should hit enter to exit; not adding a version means "skip this" not "any version"</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section> <!-- install and use deps-->
+					<h2>Installing</h2>
+<pre class="ansi2html"><span class="f5">[502]</span>$ composer install
+<span class="f2">Loading composer repositories with package information</span>
+<span class="f2">Installing dependencies (including require-dev)</span>
+  - Installing <span class="f2">slim/slim</span> (<span class="f3">2.0.0</span>)
+    Downloading: <span class="f3">100%</span>
+
+<span class="f2">Writing lock file</span>
+<span class="f2">Generating autoload files</span></pre>
+<div class="fragment">
+					<h2>Using the Dependencies</h2>
+<pre><code>&lt;?php
+//index.php
+
+require 'vendor/autoload.php';
+$app = new \Slim\Slim();
+
+$app-&gt;get("/",function(){
+    echo "you should probably copy the .htaccess file to this dir...";
+});
+
+$app-&gt;run();
+</code></pre>
+</div>
+							<aside class="notes">
+								<ul>
+									<li>install, call autoloader file</li>
+									<li>autoloader generated by composer, autoloads classes as they are invoked</li>
+									<li>Now you can git init &amp; commit</li>
+									<li>(Make sure to ignore vendor/*!</li>
+								</ul>
+							</aside>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h1><code>composer.json</code></h1>
+							<aside class="notes">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</aside>
+						</section>
+					</section>
+				</section>
+
 			</div> <!-- .slides -->
 		</div>
 

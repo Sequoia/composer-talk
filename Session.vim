@@ -200,11 +200,12 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 index.html
-badd +0 ~/Dropbox/nephp/using_composer.MD
-badd +6 ../composer.html
-badd +1 ../composer.html\!
+badd +436 index.html
+badd +1 ~/Dropbox/nephp/using_composer.MD
+badd +6 /var/www/composer.html
+badd +1 /var/www/composer.html\!
 badd +1 composer.html
+badd +333 Session.vim
 args index.html
 edit index.html
 set splitbelow splitright
@@ -216,8 +217,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe '1resize ' . ((&lines * 31 + 23) / 47)
-exe '2resize ' . ((&lines * 11 + 23) / 47)
+exe '1resize ' . ((&lines * 32 + 24) / 48)
+exe '2resize ' . ((&lines * 11 + 24) / 48)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -330,10 +331,10 @@ silent! normal! zE
 138,174fold
 176,272fold
 274,305fold
-307,307fold
-307,438fold
-445,468fold
-439,471fold
+308,328fold
+330,363fold
+365,406fold
+408,452fold
 1
 normal zc
 42
@@ -348,24 +349,20 @@ normal zc
 normal zc
 274
 normal zc
-307
-normal zo
-307
+308
 normal zc
-307
-normal zo
-439
-normal zo
-445
-normal zo
-439
+330
 normal zc
-let s:l = 431 - ((22 * winheight(0) + 15) / 31)
+365
+normal zc
+408
+normal zo
+let s:l = 457 - ((12 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-431
-normal! 011l
+457
+normal! 08l
 wincmd w
 argglobal
 edit ~/Dropbox/nephp/using_composer.MD
@@ -428,6 +425,7 @@ setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
+set list
 setlocal nolist
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:],<:>
@@ -479,9 +477,9 @@ normal! zt
 40
 normal! 064l
 wincmd w
-exe '1resize ' . ((&lines * 31 + 23) / 47)
-exe '2resize ' . ((&lines * 11 + 23) / 47)
-tabedit ../composer.html
+exe '1resize ' . ((&lines * 32 + 24) / 48)
+exe '2resize ' . ((&lines * 11 + 24) / 48)
+tabedit /var/www/composer.html
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -547,6 +545,7 @@ setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
+set list
 setlocal nolist
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:],<:>
@@ -591,7 +590,124 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 6 - ((5 * winheight(0) + 21) / 43)
+let s:l = 6 - ((5 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+6
+normal! 0
+tabedit /var/www/composer.html
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+set colorcolumn=80
+setlocal colorcolumn=80
+setlocal comments=s:<!--,m:\ \ \ \ ,e:-->
+setlocal commentstring=<!--%s-->
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal noexpandtab
+if &filetype != 'html'
+setlocal filetype=html
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=tcq
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=HtmlIndentGet(v:lnum)
+setlocal indentkeys=o,O,*<Return>,<>>,{,}
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+set list
+setlocal nolist
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:],<:>
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=htmlcomplete#CompleteTags
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=2
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'html'
+setlocal syntax=html
+endif
+setlocal tabstop=2
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+silent! normal! zE
+let s:l = 6 - ((5 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
