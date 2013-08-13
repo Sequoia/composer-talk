@@ -4,3 +4,6 @@
 .reveal li{
 	margin-bottom:10px;
 }
+.reveal pre code{
+	max-height:100%;
+}

@@ -581,19 +581,82 @@ $app-&gt;run();
 
 				</section>
 
-				<section>
-					<section>
+				<section> <!-- composer.json -->
+
+					<section> <!-- intro -->
 						<h1><code>composer.json</code></h1>
-							<aside class="notes">
-								<ul>
-									<li></li>
-									<li></li>
-									<li></li>
-									<li></li>
-								</ul>
-							</aside>
-						</section>
+						<ul>
+							<li class="fragment">List package information</li>
+							<li class="fragment">Define dependencies</li>
+							<li class="fragment">Declare where the files for your package are</li>
+							<li class="fragment">Contrain what types of dependencies are installed</li>
+							<li class="fragment">...and more</li>
+						</ul>
+						<aside class="notes">
+						<ul>
+							<li>info: name, authors, license, repo location, where to get support</li>
+							<li>using psr-0 or other methods</li>
+							<li>minimum-stability &amp; prefer-stable</li>
+						</ul>
+						</aside>
 					</section>
+
+					<section> <!-- example composer.json 1 -->
+<pre><code>
+{
+    <span class="fragment">"name": "monolog/monolog",
+    "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
+    "keywords": ["log", "logging", "psr-3"],</span>
+    <span class="fragment">"homepage": "http://github.com/Seldaek/monolog",
+    "type": "library",
+    "license": "MIT",</span>
+    <span class="fragment">"authors": [
+        {
+            "name": "Jordi Boggiano",
+            "email": "j.boggiano@seld.be",
+            "homepage": "http://seld.be"
+        }
+    ],</span>
+    <span class="fragment">"require": {
+        "php": ">=5.3.0",
+        "psr/log": "~1.0"
+    },</span>
+    <span class="fragment">"require-dev": {
+        "mlehner/gelf-php": "1.0.*",
+        "raven/raven": "0.5.*",
+        "doctrine/couchdb": "dev-master"
+    },</span>
+    <span class="fragment">"suggest": {
+        "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server",
+        "raven/raven": "Allow sending log messages to a Sentry server",
+        "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
+        "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
+        "ext-mongo": "Allow sending log messages to a MongoDB server"
+    },</span>
+    <span class="fragment">"autoload": {
+        "psr-0": {"Monolog": "src/"}
+    },</span>
+    <span class="fragment">"extra": {
+        "branch-alias": {
+            "dev-master": "1.6.x-dev"
+        }
+    }</span>
+}
+</code></pre>
+						<aside class="notes">
+							<ul>
+                <li>name, description, keywords. used by packagist / compoesr serach</li>
+                <li>re type: this can be library, project, metapackage, or composer-installer: custom installer can e.g. put files outside of the /vendor directory.  Some frameworks use these for custom install logic</li>
+                <li>require: <b>platform deps:</b> php version &amp; ext- lib- bcrypt or curl</li>
+                <li>require: <b>other packages</b>: version: *, ~, >= etc.</li>
+                <li>require-dev: tools used for dev</li>
+                <li>suggest: other packages that are useful with this one. also <b>conflict</b> &amp; <b>replace</b></li>
+                <li>autoload defines where sources for your package are, and how they're structured. psr-0 here: /vendor/namespace/library, defines how _ are used in path names etc..  Can also load non-psr-0 libs with classmap or include files on each request with `files`</li>
+                <li>extras here has branch-alias:</li>
+							</ul>
+						</aside>
+					</section>
+
 				</section>
 
 			</div> <!-- .slides -->
