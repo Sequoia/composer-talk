@@ -174,6 +174,7 @@ set ignorecase
 set keywordprg=~/.vim/php_doc.sh
 set laststatus=2
 set listchars=tab:▸\ ,eol:¬
+set operatorfunc=<SNR>17_opfunc
 set pastetoggle=<F11>
 set printoptions=paper:letter
 set ruler
@@ -200,7 +201,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +436 index.html
+badd +703 index.html
 badd +1 ~/Dropbox/nephp/using_composer.MD
 badd +6 /var/www/composer.html
 badd +1 /var/www/composer.html\!
@@ -209,16 +210,10 @@ badd +333 Session.vim
 args index.html
 edit index.html
 set splitbelow splitright
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd w
 set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe '1resize ' . ((&lines * 32 + 24) / 48)
-exe '2resize ' . ((&lines * 11 + 24) / 48)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -280,7 +275,7 @@ setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
 set list
-setlocal list
+setlocal nolist
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:],<:>
 setlocal modeline
@@ -328,13 +323,29 @@ silent! normal! zE
 42,59fold
 61,74fold
 76,136fold
-138,174fold
-176,272fold
-274,305fold
-308,328fold
-330,363fold
-365,406fold
-408,452fold
+140,157fold
+159,177fold
+138,177fold
+180,276fold
+278,309fold
+312,332fold
+334,367fold
+369,410fold
+412,456fold
+312,458fold
+461,495fold
+497,549fold
+551,584fold
+460,586fold
+590,606fold
+608,662fold
+608,662fold
+664,682fold
+684,701fold
+588,703fold
+588,703fold
+588,703fold
+708,740fold
 1
 normal zc
 42
@@ -344,28 +355,78 @@ normal zc
 76
 normal zc
 138
-normal zc
-176
-normal zc
-274
-normal zc
-308
-normal zc
-330
-normal zc
-365
-normal zc
-408
 normal zo
-let s:l = 457 - ((12 * winheight(0) + 16) / 32)
+140
+normal zc
+159
+normal zc
+138
+normal zo
+180
+normal zc
+278
+normal zc
+312
+normal zo
+312
+normal zc
+334
+normal zc
+369
+normal zc
+412
+normal zc
+312
+normal zc
+460
+normal zo
+461
+normal zc
+497
+normal zc
+551
+normal zc
+460
+normal zc
+588
+normal zo
+588
+normal zo
+588
+normal zo
+590
+normal zc
+608
+normal zo
+608
+normal zo
+608
+normal zo
+664
+normal zc
+684
+normal zc
+588
+normal zo
+588
+normal zo
+588
+normal zo
+708
+normal zc
+let s:l = 703 - ((70 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-457
-normal! 08l
-wincmd w
+703
+normal! 013l
+tabedit ~/Dropbox/nephp/using_composer.MD
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
 argglobal
-edit ~/Dropbox/nephp/using_composer.MD
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -470,15 +531,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 40 - ((10 * winheight(0) + 5) / 11)
+let s:l = 40 - ((0 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 40
 normal! 064l
-wincmd w
-exe '1resize ' . ((&lines * 32 + 24) / 48)
-exe '2resize ' . ((&lines * 11 + 24) / 48)
 tabedit /var/www/composer.html
 set splitbelow splitright
 set nosplitbelow
@@ -590,11 +648,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 6 - ((5 * winheight(0) + 22) / 44)
+let s:l = 1 - ((0 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-6
+1
 normal! 0
 tabedit /var/www/composer.html
 set splitbelow splitright
@@ -707,11 +765,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 6 - ((5 * winheight(0) + 22) / 44)
+let s:l = 1 - ((0 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-6
+1
 normal! 0
 tabnext 1
 if exists('s:wipebuf')

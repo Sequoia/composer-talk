@@ -137,7 +137,7 @@ Curl/
 				</section>
 
 				<section><!-- why -->
-					<section>
+					<section> <!-- why -->
 						<h1>Why Use a Dependency Manager?</h1>
 						<ul>
 							<li class="fragment">Easier installation of application/library</li>
@@ -155,7 +155,8 @@ Curl/
 							</ul>
 						</aside>
 					</section>
-					<section>
+
+					<section> <!-- bad old days -->
 						<h2>Bad old days</h2>
 							<ul>
 								<li class="fragment">"Go get library X from location Y..."</li>
@@ -169,10 +170,13 @@ Curl/
 							<ul>
 								<li>many frameworks made their own build tools</li>
 								<li>many frameworks did their own dependency checking</li>
+								<li>Composer fixes this!</li>
+								<li>(really you could typically get older versions if you dug thru repos, but w/o recursive dep listings it was harder, composer also makes it easier to leverage VCS features like tags)</li>
 							</ul>
 						</aside>
 					</section>
 				</section>
+
 
 				<section> <!-- installing composer -->
 					<section>
@@ -601,8 +605,8 @@ $app-&gt;run();
 						</aside>
 					</section>
 
-					<section> <!-- example composer.json 1 -->
-<pre><code>
+					<section style="margin-top:-8%"> <!-- example composer.json 1 -->
+<pre class="ansi2html">
 {
     <span class="fragment">"name": "monolog/monolog",
     "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
@@ -618,7 +622,7 @@ $app-&gt;run();
         }
     ],</span>
     <span class="fragment">"require": {
-        "php": ">=5.3.0",
+        "php": "&gt;=5.3.0",
         "psr/log": "~1.0"
     },</span>
     <span class="fragment">"require-dev": {
@@ -641,22 +645,64 @@ $app-&gt;run();
             "dev-master": "1.6.x-dev"
         }
     }</span>
-}
-</code></pre>
+}</pre>
 						<aside class="notes">
 							<ul>
                 <li>name, description, keywords. used by packagist / compoesr serach</li>
                 <li>re type: this can be library, project, metapackage, or composer-installer: custom installer can e.g. put files outside of the /vendor directory.  Some frameworks use these for custom install logic</li>
                 <li>require: <b>platform deps:</b> php version &amp; ext- lib- bcrypt or curl</li>
-                <li>require: <b>other packages</b>: version: *, ~, >= etc.</li>
+                <li>require: <b>other packages</b>: version: *, ~, &gt;= etc.</li>
                 <li>require-dev: tools used for dev</li>
                 <li>suggest: other packages that are useful with this one. also <b>conflict</b> &amp; <b>replace</b></li>
                 <li>autoload defines where sources for your package are, and how they're structured. psr-0 here: /vendor/namespace/library, defines how _ are used in path names etc..  Can also load non-psr-0 libs with classmap or include files on each request with `files`</li>
-                <li>extras here has branch-alias:</li>
+                <li>extras here has branch-alias</li>
+                <li>NOT "version": git tracks this</li>
 							</ul>
 						</aside>
 					</section>
 
+					<section><!-- Root-only properties -->
+						<h2>Root-only properties</h2>
+						<ul>
+							<li class="fragment"><code>require-dev</code></li>
+							<li class="fragment"><code>minimum-stability</code></li>
+							<li class="fragment"><code>config</code></li>
+							<li class="fragment"><code>scripts</code></li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>only work if what you're installing is the root project</li>
+								<li>require-dev: tools for testing, compiling css, etc.</li>
+								<li>minimum-stability: prod package you want all stable stuff, disallow deps from loading &gt;stable libs</li>
+								<li>config: where deps are installed, cache size, process-timeout, etc.</li>
+								<li>scripts: pre-install and post-install most notable.  Can call static class methods directly so you can put install logic in a class in your app</li>
+                <li>SO THIS SEEMS TO WORK, allows easy install, but how do you <b>ensure</b> that your application will work after install? what if a minor lib change breaks something subtly? enter: composer.lock</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section><!-- composer.lock -->
+						<h2><code>composer.lock</code></h2>
+						<ul>
+							<li class="fragment">Record which dependency versions are currently installed</li>
+							<li class="fragment"><b>Check this into your VCS</b> (unless it's a library)</li>
+							<li class="fragment">Exact same libs (from same location) across all servers</li>
+							<li class="fragment">Clone &amp; install 12 months later: all same lib versions</li>
+							<li class="fragment">Update lockfile with <code>composer update [packagename]</code></li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>known working set of deps</li>
+								<li>update &amp; run tests, if fail, revert to last committed lockfile</li>
+								<li>update deps together or one X one</li>
+								<li>only works on root project</li>
+							</ul>
+						</aside>
+					</section>
+
+				</section>
+
+				<section>
 				</section>
 
 			</div> <!-- .slides -->
