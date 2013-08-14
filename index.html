@@ -666,6 +666,7 @@ $app-&gt;run();
 						<ul>
 							<li class="fragment"><code>require-dev</code></li>
 							<li class="fragment"><code>minimum-stability</code></li>
+							<li class="fragment"><code>repositories</code></li>
 							<li class="fragment"><code>config</code></li>
 							<li class="fragment"><code>scripts</code></li>
 						</ul>
@@ -674,6 +675,7 @@ $app-&gt;run();
 								<li>only work if what you're installing is the root project</li>
 								<li>require-dev: tools for testing, compiling css, etc.</li>
 								<li>minimum-stability: prod package you want all stable stuff, disallow deps from loading &gt;stable libs</li>
+								<li>repositories: use this when you want to point to a repo other than packagist</li>
 								<li>config: where deps are installed, cache size, process-timeout, etc.</li>
 								<li>scripts: pre-install and post-install most notable.  Can call static class methods directly so you can put install logic in a class in your app</li>
                 <li>SO THIS SEEMS TO WORK, allows easy install, but how do you <b>ensure</b> that your application will work after install? what if a minor lib change breaks something subtly? enter: composer.lock</li>
@@ -703,6 +705,69 @@ $app-&gt;run();
 				</section>
 
 				<section>
+					<section>
+						<h1>Finding and Adding Packages</h1>
+							<ul>
+								<li class="fragment">Packagist.com</li>
+								<li class="fragment"><code>composer search</code></li>
+								<li class="fragment"><code>composer require</code></li>
+							</ul>
+					</section>
+
+					<section> <!-- packagist.org search -->
+          <img src="img/packagist-search.png" alt="a screenshot of packagist.org with 'twitter bootstrap' in the search box and search results displayed below" />
+					<aside class="notes">
+          shows you how many ppl have d/l'd &amp; starred: useful when looking for a mainline package<br>
+          (composer search calls a search endpoint in at packagist.org which presumably sorts the same way, but you don't see this extra info)
+					</aside>
+					</section>
+
+					<section> <!-- packagist.org package -->
+          <img src="img/packagist-package.png" alt="a screenshot of the twitter/bootstrap package page on packagist.org. Available releases/versions are listed below the package metadata" />
+					<aside class="notes">
+          Shows you the version<br><br>
+          <b>but we're too cool and 31337 for this!!</b> We want to stay in the shell! :)<br>
+          so... composer search
+					</aside>
+					</section>
+
+					<section> <!-- composer search -->
+<pre class="ansi2html"><span class="f5">[501]</span>$ composer search bootstrap
+<span class="fragment">twitter/bootstrap Sleek, intuitive, and powerful front-end framework for faster and easier...
+twbs/bootstrap Sleek, intuitive, and powerful front-end framework for faster and easier we...
+components/bootstrap Sleek, intuitive, and powerful front-end framework for faster and eas...
+mopa/bootstrap-bundle Easy integration of twitters bootstrap into symfony2
+braincrafted/bootstrap-bundle Twitter Bootstrap for Symfony2
+qubes/bootstrap Bootstrap Helper
+phundament/p3bootstrap Bootstrap Theme for Phundament
+typo3/twitter-bootstrap Simple and flexible HTML, CSS, and Javascript for popular user int...
+jasny/bootstrap Sleek, intuitive, and powerful front-end framework for faster and easier w...
+jlong/sass-twitter-bootstrap A sass port of the sleek, intuitive, and powerful front-end f...
+nervo/bootstrap Simple and flexible HTML, CSS, and Javascript for popular user interface c...
+naturalweb/bootstrap Simple Module to allow facilitate use of Twitter Bootstrap Zend Frame...
+komola/bootstrap-zend-framework Twitter bootstrap for ZF1
+kdyby/bootstrap-form-renderer Nette forms renderer with bootstrap
+mwillbanks/zfc-twitter-bootstrap A module that assists in implementing Twitter Bootstrap f...</span>
+
+<span class="fragment"><span class="f5">[502]</span>$ composer require twitter/bootstrap</span>
+<span class="fragment"><span class="f2">Please provide a version constraint for the twitter/bootstrap requirement</span>: 2.*</span>
+<span class="fragment"><span class="f2">composer.json has been updated</span>
+<span class="f2">Loading composer repositories with package information</span>
+<span class="f2">Updating dependencies (including require-dev)</span>
+  - Installing <span class="f2">twitter/bootstrap</span> (<span class="f3">v2.3.2</span>)
+    Loading from cache
+
+<span class="f2">Generating autoload files</span></span>
+
+<span class="fragment"><span class="f5">[503]</span>$ cat composer.json 
+{
+    &quot;require&quot;: {
+        &quot;twitter/bootstrap&quot;: &quot;2.*&quot;
+    }
+}</span></pre>
+					</section>
+          <aside class="notes">doesn't tell you version numbers which kinda sucks</aside>
+
 				</section>
 
 			</div> <!-- .slides -->

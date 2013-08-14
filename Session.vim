@@ -207,8 +207,221 @@ badd +6 /var/www/composer.html
 badd +1 /var/www/composer.html\!
 badd +1 composer.html
 badd +333 Session.vim
+badd +0 ../term.html
 args index.html
 edit index.html
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+set colorcolumn=80
+setlocal colorcolumn=80
+setlocal comments=s:<!--,m:\ \ \ \ ,e:-->
+setlocal commentstring=<!--%s-->
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'html'
+setlocal filetype=html
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=tcq
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=HtmlIndentGet(v:lnum)
+setlocal indentkeys=o,O,*<Return>,<>>,{,}
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+set list
+setlocal list
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:],<:>
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=htmlcomplete#CompleteTags
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=2
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'html'
+setlocal syntax=html
+endif
+setlocal tabstop=2
+setlocal tags=/var/www/composer-talk/.git/html.tags,/var/www/composer-talk/.git/tags,./tags,./TAGS,tags,TAGS
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+silent! normal! zE
+1,40fold
+42,59fold
+61,74fold
+76,136fold
+140,157fold
+159,177fold
+138,177fold
+180,276fold
+278,309fold
+312,332fold
+334,367fold
+369,410fold
+412,456fold
+312,458fold
+461,495fold
+497,549fold
+551,584fold
+460,586fold
+590,606fold
+608,662fold
+608,662fold
+664,684fold
+686,703fold
+588,705fold
+588,705fold
+588,705fold
+773,805fold
+1
+normal zc
+42
+normal zc
+61
+normal zc
+76
+normal zc
+138
+normal zo
+140
+normal zc
+159
+normal zc
+138
+normal zc
+180
+normal zc
+278
+normal zc
+312
+normal zo
+312
+normal zc
+334
+normal zc
+369
+normal zc
+412
+normal zc
+312
+normal zc
+460
+normal zo
+461
+normal zc
+497
+normal zc
+551
+normal zc
+460
+normal zc
+588
+normal zo
+588
+normal zo
+588
+normal zo
+590
+normal zc
+608
+normal zo
+608
+normal zc
+608
+normal zo
+664
+normal zc
+686
+normal zc
+588
+normal zc
+588
+normal zo
+588
+normal zo
+773
+normal zc
+let s:l = 721 - ((720 * winheight(0) + 21) / 43)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+721
+normal! 0141l
+tabedit ../term.html
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -275,7 +488,7 @@ setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
 set list
-setlocal nolist
+setlocal list
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:],<:>
 setlocal modeline
@@ -310,7 +523,7 @@ if &syntax != 'html'
 setlocal syntax=html
 endif
 setlocal tabstop=2
-setlocal tags=/var/www/composer-talk/.git/html.tags,/var/www/composer-talk/.git/tags,./tags,./TAGS,tags,TAGS
+setlocal tags=
 setlocal textwidth=0
 setlocal thesaurus=
 setlocal noundofile
@@ -319,107 +532,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-1,40fold
-42,59fold
-61,74fold
-76,136fold
-140,157fold
-159,177fold
-138,177fold
-180,276fold
-278,309fold
-312,332fold
-334,367fold
-369,410fold
-412,456fold
-312,458fold
-461,495fold
-497,549fold
-551,584fold
-460,586fold
-590,606fold
-608,662fold
-608,662fold
-664,682fold
-684,701fold
-588,703fold
-588,703fold
-588,703fold
-708,740fold
-1
-normal zc
-42
-normal zc
-61
-normal zc
-76
-normal zc
-138
-normal zo
-140
-normal zc
-159
-normal zc
-138
-normal zo
-180
-normal zc
-278
-normal zc
-312
-normal zo
-312
-normal zc
-334
-normal zc
-369
-normal zc
-412
-normal zc
-312
-normal zc
-460
-normal zo
-461
-normal zc
-497
-normal zc
-551
-normal zc
-460
-normal zc
-588
-normal zo
-588
-normal zo
-588
-normal zo
-590
-normal zc
-608
-normal zo
-608
-normal zo
-608
-normal zo
-664
-normal zc
-684
-normal zc
-588
-normal zo
-588
-normal zo
-588
-normal zo
-708
-normal zc
-let s:l = 703 - ((70 * winheight(0) + 21) / 43)
+let s:l = 7 - ((3 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-703
-normal! 013l
+7
+normal! 0
 tabedit ~/Dropbox/nephp/using_composer.MD
 set splitbelow splitright
 set nosplitbelow
