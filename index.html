@@ -177,7 +177,6 @@ Curl/
 					</section>
 				</section>
 
-
 				<section> <!-- installing composer -->
 					<section>
 						<h1>Installing Composer</h1>
@@ -450,7 +449,7 @@ Resolving deltas: 100% (1560/1560), done.
 								<li>Clone the project</li>
 								<li>composer install</li>
 								<li><b>root project</b></li>
-								<li>now you can modify package, run tests (this package doesn't include test suite but it could), etc.</li>
+								<li>now you can modify package, run tests (this package runs tests thru travis-ci which already has phpunit on hand), etc.</li>
 							</ul>
 							<b>Next:</b> Going to look at that package.json but first lets look at a tool that makes it a lot easier to create
 						</aside>
@@ -704,8 +703,8 @@ $app-&gt;run();
 
 				</section>
 
-				<section>
-					<section>
+        <section> <!-- finding & adding -->
+          <section> <!-- finding and adding packages -->
 						<h1>Finding and Adding Packages</h1>
 							<ul>
 								<li class="fragment">Packagist.com</li>
@@ -765,10 +764,107 @@ mwillbanks/zfc-twitter-bootstrap A module that assists in implementing Twitter B
         &quot;twitter/bootstrap&quot;: &quot;2.*&quot;
     }
 }</span></pre>
-					</section>
           <aside class="notes">doesn't tell you version numbers which kinda sucks</aside>
+					</section>
 
 				</section>
+
+        <section><!-- publishing to packagist -->
+          <section style="margin-top:-5%"><!-- publishing img -->
+            <h2>Publishing to Packagist.org</h2>
+            <img class="fragment" src="img/packagist-submit.png" alt="screenshot of packagist.org: submit package page. Form contains a single input field for VCS repo location and a large green button labeled 'check'."/>
+            <aside class="notes">
+              <ul>
+                <li>You've got your great new library, ready to share with the world</li>
+                <li>How do you get your package on Packagist?</li>
+                <li>Just paste in your github repo location!</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section><!-- finer points of packagist -->
+            <h2>How Packagist Works</h2>
+            <ul>
+              <li class="fragment">Gets package metadata from <code>composer.json</code></li>
+              <li class="fragment">Lists release versions based on tag names (or comparable branch name)</li>
+              <li class="fragment">Users may also require branches directly using <code>dev-branchname</code></li>
+              <li class="fragment">Scans repo once per day for new code</li>
+            </ul>
+            <aside class="notes">
+            <ul>
+              <li>Service hook for github can tell packagist to rescan whenver you push</li>
+              <li>comparable means countable, +1 able (basically, a number)</li>
+              <li>Use semantic versioning!!!</li>
+            </ul>
+            </aside>
+          </section>
+        </section>
+
+        <section> <!-- ci with travis -->
+          <section> <!-- intro to CI -->
+            <h1>CI with Travis</h1>
+            <blockquote>
+              Travis CI is a hosted continuous integration service for the open source community.
+            </blockquote>
+            <ul>
+              <li class="fragment">Runs when you push to github</li>
+              <li class="fragment">Can test against multiple PHP versions</li>
+              <li class="fragment">Notifications on build failure</li>
+              <li class="fragment">Has common tools (xdebug, phpunit, composer)</li>
+              <li class="fragment"><code>.travis.yml</code> tells travis how to run your build</li>
+              <li class="fragment">Best part: <span class="fragment"><img style="margin:0;border:0;" src="img/build-passing.png" alt="'build: passing' badge from travis-ci.org"/></span></li>
+            </ul>
+            <aside class="notes">
+              <ul>
+                <li>Continuous integration: building &amp; testing at regular intervals rather than once after a long dev period</li>
+                <li>PHP isn't compiled but a package depending on other packages does require a build</li>
+                <li>Multiple php versions, great!</li>
+                <li>travis-ci.org</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section> <!-- .travis.yml -->
+          <h2><code>.travis.yml</code></h2>
+<pre class="ansi2html">language: php
+
+php:
+  - 5.3.3
+  - 5.3
+  - 5.4
+  - 5.5
+
+before_script:
+  - composer install --dev --prefer-source
+
+script: phpunit</pre>
+            <aside class="notes"> 
+              <ul>
+                <li>Using monolog as example again</li>
+                <li>test across many PHP versions</li>
+                <li>run composer before</li>
+                <li>run phpunit</li>
+                <li>(phpunit config in its own XML file)</li>
+                <li>totally transparent after setup; runs when you merge in PRs as well</li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+
+        <section><!-- outro -->
+          <ul>
+            <li class="fragment">What &amp; Why of Package Management</li>
+            <li class="fragment">How to Package Your Application</li>
+            <li class="fragment">How to Share</li>
+            <li class="fragment">How to Test</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Go forth &amp; package</li>
+              <li>Questions?</li>
+            </ul>
+          </aside>
+        </section>
 
 			</div> <!-- .slides -->
 		</div>

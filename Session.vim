@@ -192,6 +192,7 @@ set notimeout
 set ttimeout
 set ttimeoutlen=200
 set wildmenu
+set window=37
 set nowritebackup
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
@@ -201,13 +202,13 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +703 index.html
+badd +865 index.html
 badd +1 ~/Dropbox/nephp/using_composer.MD
 badd +6 /var/www/composer.html
 badd +1 /var/www/composer.html\!
 badd +1 composer.html
 badd +333 Session.vim
-badd +0 ../term.html
+badd +1 ../term.html
 args index.html
 edit index.html
 set splitbelow splitright
@@ -323,30 +324,49 @@ silent! normal! zE
 1,40fold
 42,59fold
 61,74fold
-76,136fold
+76,137fold
+140,157fold
 140,157fold
 159,177fold
-138,177fold
+159,177fold
+139,178fold
+181,202fold
+203,219fold
+220,275fold
 180,276fold
 278,309fold
-312,332fold
-334,367fold
-369,410fold
-412,456fold
-312,458fold
-461,495fold
-497,549fold
-551,584fold
-460,586fold
-590,606fold
-608,662fold
-608,662fold
-664,684fold
-686,703fold
-588,705fold
-588,705fold
-588,705fold
-773,805fold
+311,331fold
+333,366fold
+368,409fold
+411,455fold
+311,457fold
+460,494fold
+496,548fold
+550,583fold
+459,585fold
+589,605fold
+607,661fold
+607,661fold
+663,683fold
+685,702fold
+587,704fold
+587,704fold
+587,704fold
+707,714fold
+716,722fold
+724,731fold
+768,768fold
+733,768fold
+733,768fold
+706,770fold
+773,783fold
+785,800fold
+772,801fold
+804,825fold
+827,851fold
+803,852fold
+854,867fold
+869,901fold
 1
 normal zc
 42
@@ -355,72 +375,126 @@ normal zc
 normal zc
 76
 normal zc
-138
+139
+normal zo
+140
 normal zo
 140
 normal zc
+140
+normal zo
+159
+normal zo
 159
 normal zc
-138
+159
+normal zo
+139
+normal zc
+180
+normal zo
+181
+normal zc
+203
+normal zc
+220
 normal zc
 180
 normal zc
 278
 normal zc
-312
+311
 normal zo
-312
+311
 normal zc
-334
+333
 normal zc
-369
+368
 normal zc
-412
+411
 normal zc
-312
+311
 normal zc
-460
+459
 normal zo
-461
-normal zc
-497
-normal zc
-551
-normal zc
 460
 normal zc
-588
-normal zo
-588
-normal zo
-588
-normal zo
-590
+496
 normal zc
-608
+550
+normal zc
+459
+normal zc
+587
 normal zo
-608
-normal zc
-608
+587
 normal zo
-664
-normal zc
-686
-normal zc
-588
-normal zc
-588
+587
 normal zo
-588
+589
+normal zc
+607
+normal zo
+607
+normal zc
+607
+normal zc
+663
+normal zc
+685
+normal zc
+587
+normal zc
+587
+normal zo
+587
+normal zo
+706
+normal zo
+707
+normal zc
+716
+normal zc
+724
+normal zc
+733
+normal zo
+733
+normal zo
+768
+normal zc
+733
+normal zc
+733
+normal zo
+706
+normal zc
+772
 normal zo
 773
 normal zc
-let s:l = 721 - ((720 * winheight(0) + 21) / 43)
+785
+normal zc
+772
+normal zc
+803
+normal zo
+804
+normal zc
+827
+normal zo
+803
+normal zc
+854
+normal zc
+869
+normal zc
+let s:l = 854 - ((715 * winheight(0) + 17) / 34)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-721
-normal! 0141l
+854
+normal! 08l
 tabedit ../term.html
 set splitbelow splitright
 set nosplitbelow
@@ -532,7 +606,7 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 7 - ((3 * winheight(0) + 21) / 43)
+let s:l = 7 - ((0 * winheight(0) + 17) / 34)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
