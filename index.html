@@ -68,6 +68,10 @@
 					</ul>
 					<aside class="notes">
 						<ul>
+							<li>Use mostly Java &amp; JS at work now, got to use PHP recently for a project, used composer to organize it</li>
+							<li>Composer was pretty cool! Refreshing way to write PHP, like I'm writing node or python</li>
+							<li>This is what other communities have been doing for a while (npm, gems, easy_install)</li>
+							<li>Really cool; This is the future of PHP development, and it is good</li>
 							<li>Feel free to come say "Hi" and/or ask questions</li>
 						</ul>
 					</aside>
@@ -129,7 +133,7 @@ Curl/
 						<li>Dependency Manager: installs packages locally, relative to a project, for the project</li>
 					</ul>
 					<aside class="notes">
-					from composer: By default it will never install anything globally. Thus, it is a dependency manager.<br><br>
+					from composer: By default it will never install anything globally. Thus, it is a dependency manager.<br>
 					There is no "composer install [packagename]" --- "Too many arguments" exception
 					</aside>
 					</section>
@@ -144,6 +148,7 @@ Curl/
 							<li class="fragment">Fewer version conflicts</li>
 							<li class="fragment">Find problems faster (esp. for platform dependencies)</li>
 							<li class="fragment">More consistency &amp; transparency</li>
+							<li class="fragment">$$$</li>
 						</ul>
 						<aside class="notes">
 							<ul>
@@ -152,6 +157,7 @@ Curl/
 								<!--<li>if project relies on sendmail for "contact me" box &amp; server doesn't have it, find out immediately, not after wondering why you're not getting emails for months</li>-->
 								<li>If you're installing a project that relies on bz2 to backup &amp; archive data and server doesn't have it, find out when you install instead of when you look for backups and realize you don't have any (yes, contrived example)</li>
 								<li>quickly get an overview of what a package depends on</li>
+                <li>Job prospects, working on others' projects; Soon this will be required knowledge: Laravel/ZF/Sym shop -> need this skill.  In 12-24mo if you're not using this, you're behind</li>
 							</ul>
 						</aside>
 					</section>
@@ -850,6 +856,32 @@ script: phpunit</pre>
               </ul>
             </aside>
           </section>
+        </section>
+
+        <section>
+          <h1>What about PEAR?</h1>
+          <ul>
+            <li class="fragment">Only one channel for a long time</li>
+            <li class="fragment">Language features (namespaces)</li>
+            <li class="fragment">Frameworks</li>
+            <li class="fragment">Many packages not updated to PHP5</li>
+            <li class="fragment">Github filled many of the same needs, better</li>
+            <li class="fragment">vs. Composer: PEAR requires server software, Composer can install from git repo</li>
+            <li class="fragment">Successes: PEAR installer itself, DB, MDB2; <a href="https://pear.php.net/channels/">many projects have channels still</a></li>
+            <li class="fragment">Still used for: PHP extensions</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>PEAR the installer vs. PEAR the repo</li>
+              <li>Only one channel: quality over quantity, vetted packages, hard to grow</li>
+              <li>ZEND framework, "official php libarary" 1 big chunk, didn't use PEAR. others followed</li>
+              <li>By the time they added channels, hard to set up, people already on frameworks; package spec undocumented</li>
+              <li>no namespaces -&lt; hard to share code -&lt; large frameworks instead</li>
+              <li>PHP5: devs didn't see need to update, many maintainers left project &amp; didn't get replaced</li>
+              <li>github: getting/hosting code, issue tracking,</li>
+              <li>Pear installer still widely used; ESP. for PHP Extensions</li>
+            </ul>
+          </aside>
         </section>
 
         <section><!-- outro -->
