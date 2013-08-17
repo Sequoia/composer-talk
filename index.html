@@ -53,7 +53,7 @@
 					<aside class="notes">
 						<ul>
 							<li>Talking about dependency management in PHP: Important topic, dear to me, <b>move the community forward</b></li>
-							<li>time allowing: travis &amp; some more advanced aspects</li>
+							<li>time allowing: What came before (PEAR), &amp; travis</li>
 						</ul>
 					</aside>
 				</section>
@@ -68,10 +68,11 @@
 					</ul>
 					<aside class="notes">
 						<ul>
+              <li>PHP: my first lang. Wrote own CMS, PEAR, joomla,wordpress,silverscript,cakephp,slim -&gt; lived thru recent history of PHP code organization patterns</li>
 							<li>Use mostly Java &amp; JS at work now, got to use PHP recently for a project, used composer to organize it</li>
-							<li>Composer was pretty cool! Refreshing way to write PHP, like I'm writing node or python</li>
-							<li>This is what other communities have been doing for a while (npm, gems, easy_install)</li>
-							<li>Really cool; This is the future of PHP development, and it is good</li>
+							<li>Composer was pretty cool! Refreshing way to write PHP, felt like Node</li>
+							<li>This is what other communities have been doing for a while: package management (npm, gems)</li>
+							<li>Not an expert in this; talking because this is the future of PHP development, and it is good</li>
 							<li>Feel free to come say "Hi" and/or ask questions</li>
 						</ul>
 					</aside>
@@ -120,8 +121,10 @@ Curl/
 
 					<aside class="notes">
 						<ul>
-							<li>Picked cuz small package</li>
-							<li>note src / namespace / classname (psr-0, beyond scope of this talk)</li>
+							<li>Picked cuz small package, doesn't have to be big &amp; scary, can be this simple</li>
+              <li>src/Zelenin/Curl NS -&gt; Lib</li>
+							<!--<li>note src / namespace / classname (psr-0, beyond scope of this talk)</li>-->
+              <li><b>May have noticed diff: dep man vs. pack man</b></li>
 						</ul>
 					</aside>
 					</section>
@@ -133,8 +136,7 @@ Curl/
 						<li>Dependency Manager: installs packages locally, relative to a project, for the project</li>
 					</ul>
 					<aside class="notes">
-					from composer: By default it will never install anything globally. Thus, it is a dependency manager.<br>
-					There is no "composer install [packagename]" --- "Too many arguments" exception
+					from composer: By default it will never install anything globally. Thus, it is a dependency manager.
 					</aside>
 					</section>
 
@@ -169,7 +171,6 @@ Curl/
 								<li class="fragment">"Does this plugin even work with this version of the framework?"</li>
 								<li class="fragment">"No, it doesn't... where do I find the old one"</li>
 								<li class="fragment">"I didn't know this relied on PHP 5.4! :("</li>
-								<li class="fragment">rinse, repeat</li>
 								<li class="fragment">Authoring a new lib/framework: roll your own sanity checker</li>
 							</ul>
 						<aside class="notes">
@@ -273,9 +274,10 @@ $ php -r \
 </pre>
 					<aside class="notes">
 						<ul>
-							<li>Wonderful help screen, beautiful, ansi output</li>
-							<li>(you can set --no-ansi)</li>
+							<li>Wonderful help screen, colorized &amp; organized &amp; concise</li>
+              <li>Look these over</li>
 							<li>We'll look more closely at some of these commands later</li>
+              <li><b>Now look at some to help you get oriented: a few useful commands</b></li>
 						</ul>
 					</aside>
 					</section>
@@ -316,11 +318,11 @@ Checking composer version: <span class="f2">OK</span>
 
 				<section><!-- installing a package -->
 					<section> <!-- installing a package -->
-						<h1>Installing Using Composer</h1>
-						<ol class="fragment">
-							<li>Start a new project</li>
-							<li>Start a new project based on a framework</li>
-							<li>Work on an existing library or project</li>
+						<h1>Installing a Package Using Composer</h1>
+						<ol>
+							<li class="fragment">Start a new project from scratch</li>
+							<li class="fragment">Start a new project based on a framework</li>
+							<li class="fragment">Work on an existing library or project</li>
 						</ol>
 
 						<aside class="notes">
@@ -363,11 +365,11 @@ drwxrwxr-x 2 diamonds diamonds 4096 Aug  9 22:50 composer
 drwxrwxr-x 3 diamonds diamonds 4096 Aug  9 22:50 slim</span></pre>
 						<aside class="notes">
 						<ul>
-							<li>write your own composer.json This is for packages that don't have a skeleton package, or if you don't want to use one</li>
+							<li>Start with a clean/empty file</li>
 							<li>I just need "slim" for my project right now, latest version</li>
-							<li>add slim, install</li>
+							<li><b>TRANS: </b>add slim, install</li>
 							<li>this is how you start your own roll-your-own project</li>
-							<li>Code is now in vendor directory</li>
+							<li><b>TRANS: </b>Code is now in vendor directory</li>
 						</ul>
 						</aside>
 					</section>
@@ -404,13 +406,13 @@ Application key [3keZh90lTVfdiyQ1aw5zwUvwY7w5OXBt] set successfully.</span></pre
 						<aside class="notes">
 							<ul>
 								<li><b>using create-project</b></li>
-								<li>For building a new website and starting out with a template or "skeleton" package<br>
-								in the past: download all of cake or w/e and put your application in it. <b>MONOLITHIC, one piece</b></li>
-								<li>EXAMPLE</li>
-								<li>Laravel uses lots of other packages from other projects like Symfony &amp; doctrine <b>This is why it's not packaged as zip file</b>: it would have to duplicate all the other packages into its source</li>
-								<li><b>Skeleton package is a sort of "jump-start" for a framework: laravel/laravel, zendframework/ZendSkeletonApplication</b></li>
+								<li>old way: download ZIP &amp; unzip</li>
+								<li>New frameworks depend on many packages, not all in one place -&gt; can't easily install zip</li>
+								<li>Want a standard "basic" install, <b>bootstrap install</b>, all stuff for a "basic" laravel instance</li>
+                <li>Don't clone the framework's repo! you want to track your project separately, not as a "fork" of the core framework</li>
+								<li><b>Skeleton package is a sort of "jump-start" for a framework</b></li>
+								<li><b>They have a good standard config already</b></li>
 								<li>skeleton project laravel/laravel declares laravel/framework as a dependency</li>
-								<li>note Donwloading/Cloning/Loading from Cache</li>
 							</ul>
 						</aside>
 					</section>
@@ -492,9 +494,10 @@ This command will guide you through creating your composer.json config.</span>
 						<aside class="notes">
 							<ul>
 								<li><b>I'm gonna step thru how you might start a new project with composer</b></li>
-								<li>init Walks you thru the steps</li>
+								<li>init Walks you thru the steps, generates composer.json for you</li>
 								<li>like npm init</li>
 								<li>not everything intuitive, rough around the edges</li>
+                <li><b>EXAMPLE AFTER NOTES</b></li>
 							</ul>
 						</aside>
 					</section>
@@ -885,19 +888,29 @@ script: phpunit</pre>
         </section>
 
         <section><!-- outro -->
+          <h1>Summary</h1>
           <ul>
             <li class="fragment">What &amp; Why of Package Management</li>
             <li class="fragment">How to Package Your Application</li>
             <li class="fragment">How to Share</li>
             <li class="fragment">How to Test</li>
           </ul>
-					<h2 class="fragment">Go forth &amp; package! :)</h2>
           <aside class="notes">
             <ul>
-              <li>Go forth &amp; package</li>
+              <li><b>What we've gone over</b></li>
+              <li><b>4 points</b></li>
               <li>Questions?</li>
             </ul>
           </aside>
+        </section>
+
+        <section>
+					<h1 class="fragment">Go forth &amp; package! :)</h1>
+          <ul>
+            <li>slides: <a href="http://sequoia.github.io/composer-talk">http://sequoia.github.io/composer-talk</a></li>
+            <li>sequoia.mcdowell@gmail.com</li>
+            <li>@_sequoia</li>
+          </ul>
         </section>
 
 			</div> <!-- .slides -->
